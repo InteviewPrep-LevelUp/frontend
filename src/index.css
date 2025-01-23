@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-size: 16px;
+  font-family: "Inter", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.text-gradient {
+  background-image: linear-gradient(to right, #ffcc00, #ff00c3, #0099ff);
+}

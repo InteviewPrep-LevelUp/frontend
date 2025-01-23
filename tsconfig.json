@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es5", // Уровень совместимости с JavaScript
+    "lib": ["dom", "esnext"], // Подключаем библиотеки для работы с DOM и последним стандартом ES
+    "allowJs": true, // Разрешаем использовать файлы JavaScript
+    "jsx": "react", // Настройка для работы с JSX в React
+    "moduleResolution": "node", // Использование стратегии разрешения модулей для Node.js
+    "strict": true, // Включаем строгий режим для лучшей проверки типов
+    "esModuleInterop": true, // Разрешение импорта CommonJS модулей как ES6 модулей
+    "skipLibCheck": true, // Пропуск проверки библиотек для ускорения компиляции
+    "forceConsistentCasingInFileNames": true // Поддержка единообразного написания имен файлов
+  },
+  "include": ["src/**/*"], // Указываем папку с исходным кодом
+  "exclude": ["node_modules"] // Исключаем папку node_modules
+}
