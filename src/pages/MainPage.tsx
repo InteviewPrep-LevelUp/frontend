@@ -13,22 +13,26 @@ const MainPage = () => {
 
   return (
     <div className="bg-custom-blue flex flex-col">
-      <header className="flex justify-between items-center max-w-7xl w-full mx-auto py-3 px-10 text-white">
-        <div className="flex items-center gap-[70px] capitalize">
-          <img src="img/logo.png" className="h-16 pt-1" alt="Logo" />
-          <span onClick={() => handleScroll("main")} className="cursor-pointer">
+      {/* Header */}
+      <header className="flex flex-wrap justify-between items-center max-w-7xl w-full mx-auto py-4 px-6 md:px-10 text-white">
+        <div className="flex items-center gap-6 md:gap-10">
+          <img src="img/logo.png" className="h-12 md:h-16" alt="Logo" />
+          <span
+            onClick={() => handleScroll("main")}
+            className="cursor-pointer text-sm md:text-base"
+          >
             главная
           </span>
           <span
             onClick={() => handleScroll("about")}
-            className="cursor-pointer"
+            className="cursor-pointer text-sm md:text-base"
           >
             о проекте
           </span>
         </div>
-        <div className="flex items-center">
+        <div className="mt-4 md:mt-0">
           <button
-            className="cursor-pointer capitalize border-[2px] rounded-lg bg-white px-4 py-2 text-custom-blue font-bold transition-all transform hover:scale-105 hover:shadow-lg hover:opacity-90"
+            className="cursor-pointer capitalize border-2 rounded-lg bg-white px-4 py-2 text-custom-blue font-bold transition-all transform hover:scale-105 hover:shadow-lg hover:opacity-90"
             onClick={() => navigate("/chooseDirection")}
           >
             Начать подготовку
@@ -36,58 +40,62 @@ const MainPage = () => {
         </div>
       </header>
 
+      {/* Main Section */}
       <section
         id="main"
-        className="flex flex-col text-white items-center pt-[100px] z-10 h-[90vh]"
+        className="flex flex-col text-white items-center pt-16 md:pt-24 h-[90vh] p-10"
         style={{
           backgroundImage: "url('img/gradient.png')",
-          backgroundSize: "100% 500px",
+          backgroundSize: "100% 400px",
           backgroundPosition: "bottom",
           backgroundRepeat: "no-repeat",
         }}
       >
-        <h1 className="text-[60px] font-bold text-center leading-[65px] max-w-6xl">
+        <h1 className="text-3xl md:text-5xl lg:text-[60px] font-bold text-center leading-tight max-w-4xl">
           Готовьтесь к собеседованиям с умным AI-помощником
         </h1>
-        <p className="mt-5">
+        <p className="mt-5 text-sm md:text-base max-w-md text-center">
           Улучшите технические и софт скиллы, проходите мок-интервью и
           достигайте успеха!
         </p>
         <button
-          className="cursor-pointer mt-10 pt-5 pb-5 pl-8 pr-8 rounded-lg bg-white text-custom-blue font-bold spacing tracking-[1px] transition-all transform hover:scale-105 hover:shadow-lg hover:opacity-90"
+          className="cursor-pointer mt-6 md:mt-10 px-6 py-3 md:py-5 rounded-lg bg-white text-custom-blue font-bold text-sm md:text-base tracking-wide transition-all transform hover:scale-105 hover:shadow-lg hover:opacity-90"
           onClick={() => navigate("/chooseDirection")}
         >
           Попробовать сейчас
         </button>
       </section>
 
+      {/* About Section */}
       <section
         id="about"
-        className="flex flex-col items-center py-20 text-white"
+        className="flex flex-col items-center py-16 md:py-20 px-4 text-white"
         style={{
           backgroundImage: "url('img/bg-2.webp')",
           backgroundColor: "#000",
-          backgroundSize: "1050px",
-          backgroundPosition: "100px center",
+          backgroundSize: "contain",
+          backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
       >
-        <h2 className="text-[50px] font-bold mb-20 text-neon-blue">
+        <h2 className="text-3xl md:text-4xl lg:text-[50px] font-bold mb-12 md:mb-16 text-neon-blue text-center">
           О проекте
         </h2>
 
-        <div className="flex items-center gap-[200px] justify-center">
-          <div className="relative group">
+        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16 justify-center">
+          {/* Image Section */}
+          <div className="relative group w-full max-w-[90%] md:max-w-lg">
             <img
               src="img/about.avif"
               alt="About Project"
-              className="w-[500px] h-auto rounded-lg transition-all transform group-hover:scale-105 shadow-custom-white"
+              className="w-full h-auto rounded-lg transition-all transform group-hover:scale-105 shadow-custom-white"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-custom-blue opacity-0 group-hover:opacity-40 rounded-lg transition-opacity"></div>
           </div>
 
+          {/* Text Section */}
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
-            <p className="text-center lg:text-left max-w-4xl leading-7 text-lg mb-10 w-[500px]">
+            <p className="max-w-full lg:max-w-md leading-6 md:leading-7 text-sm md:text-base mb-8">
               Этот проект создан для подготовки к техническим собеседованиям с
               использованием искусственного интеллекта. Вы можете выбрать
               направление (Frontend, Backend, Data Science и т.д.) и тренировать
