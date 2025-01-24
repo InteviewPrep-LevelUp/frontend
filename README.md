@@ -1,46 +1,63 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## ПРОЕКТ LEVEL UP - ПОДГОТОВКА К СОБЕСЕДОВАНИЯМ В IT
 
-## Available Scripts
+Проект "LevelUp" представляет собой платформу для подготовки к интервью с функциональностью для выбора направления, уровня, языка и прохождения различных тестов. В проекте есть разделы с рекомендациями и проверкой прогресса.
 
-In the project directory, you can run:
+## Структура проекта
 
-### `npm start`
+Проект состоит из двух основных частей:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Frontend**: Визуальная часть проекта, созданная на React.
+- **Backend**: Серверная часть, которая взаимодействует с базой данных и предоставляет API.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Установка и запуск
 
-### `npm test`
+### 1. Создание папки и клонирование репозитория
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Создайте папку `levelup` на вашем компьютере.
+2. Перейдите в эту папку, создайте в ней две папки: `frontend` и `backend`.
 
-### `npm run build`
+### 2. Клонирование репозитория фронтенда
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Откройте папку `frontend` в вашем редакторе кода (например, VSCode).
+2. Откройте терминал в VSCode и выполните команду для клонирования репозитория:
+    git clone https://github.com/InteviewPrep-LevelUp/frontend.git
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. После этого внутри папки `frontend` будут созданы все необходимые файлы.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 3. Установка зависимостей фронтенда
 
-### `npm run eject`
+1. После клонирования репозитория перейдите в папку `frontend` в терминале и выполните команду для установки всех зависимостей:
+   npm i
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+2. После того как зависимости будут установлены, можно запустить проект.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 4. Запуск фронтенда
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. Запустите проект фронтенда командой:
+   npm start
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+2. После этого проект будет доступен в вашем браузере по адресу `http://localhost:3000`.
 
-## Learn More
+### 5. Установка и запуск бэкенда
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+## Структура проекта
+
+- **/frontend**: Весь код для фронтенд приложения на React.
+- **/backend**: Серверная часть проекта.
+- **/public**: Статические файлы, такие как изображения, шрифты и т.д.
+- **/src**: Исходный код для фронтенд и бэкенд частей.
+
+## Используемые библиотеки
+
+- **React** для создания пользовательского интерфейса.
+- **Redux** для управления состоянием.
+- **TailwindCSS** для стилизации компонентов.
+- **TypeScript** для типизации и более удобного использования JavaScript
+
+## Примечания
+
+- Если у вас возникли проблемы с установкой или запуском проекта, пожалуйста, обратитесь к разработчика: @fanwwi @daniarmakyev
