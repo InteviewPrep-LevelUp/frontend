@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../store/store";
 import { getQuestions } from "../store/actions/question.action";
+import Loader from "../components/Loader";
 
 const GoPage = () => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch(); // Диспатч для вызова экшенов
+  const dispatch = useAppDispatch();
+  const [loading, setLoading] = useState(false); // Loading state
 
   // Функция для отправки данных на сервер
   const handleNavigate = async () => {
@@ -15,9 +17,12 @@ const GoPage = () => {
       const { specialty, level, language } = JSON.parse(preparationData);
 
       try {
+        setLoading(true); // Set loading to true when the action starts
         await dispatch(getQuestions({ specialty, level, language, navigate }));
+        setLoading(false); // Set loading to false when the action is complete
       } catch (error) {
         console.error("Ошибка при отправке данных:", error);
+        setLoading(false); // Ensure loading is stopped if there is an error
       }
     }
   };
@@ -45,11 +50,13 @@ const GoPage = () => {
 
         <button
           className="cursor-pointer mt-6 sm:mt-8 px-6 py-3 md:py-5 rounded-lg bg-white text-custom-blue font-bold text-sm sm:text-base tracking-wide transition-all transform hover:scale-105 hover:shadow-lg hover:opacity-90"
-          onClick={handleNavigate} // Вызываем функцию при клике
+          onClick={handleNavigate}
+          disabled={loading} // Disable button while loading
         >
           Перейти к заданиям 👉
         </button>
       </section>
+      {loading && <section className="absolute top-0 right-0 left-0"><Loader /></section>}
     </div>
   );
 };
