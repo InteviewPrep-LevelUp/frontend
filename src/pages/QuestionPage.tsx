@@ -10,26 +10,27 @@ const QuestionPage: React.FC = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [userAnswers, setUserAnswers] = useState<Answer[]>([]);
   const [currentAnswer, setCurrentAnswer] = useState<string>("");
-  const [storedQuestions, setStoredQuestions] = useState<
-    { question: string }[] | null
-  >(null); // Изначально null
+  const [storedQuestions, setStoredQuestions] = useState<string[]>([]); // Изменено на массив строк
   const navigate = useNavigate();
 
-  // Загружаем вопросы из localStorage
   useEffect(() => {
     const storedData = localStorage.getItem("questions");
     if (storedData) {
-      const parsedData = JSON.parse(storedData);
-      if (parsedData && Array.isArray(parsedData.questions)) {
-        setStoredQuestions(parsedData.questions);
-      } else {
-        console.error("Невалидный формат данных в localStorage");
+      try {
+        const parsedData = JSON.parse(storedData);
+        if (Array.isArray(parsedData.questions)) {
+          setStoredQuestions(parsedData.questions); // Сохраняем вопросы
+        } else {
+          console.error("Невалидный формат данных в localStorage");
+        }
+      } catch (error) {
+        console.error("Ошибка при парсинге данных из localStorage:", error);
       }
     }
   }, []);
 
   // Если данные еще не загружены, показываем сообщение
-  if (storedQuestions === null) {
+  if (storedQuestions.length === 0) {
     return (
       <div className="min-h-screen bg-custom-blue flex flex-col items-center justify-center p-10">
         <p className="text-white">Загружаются вопросы...</p>
@@ -47,7 +48,7 @@ const QuestionPage: React.FC = () => {
     setUserAnswers((prevAnswers) => [
       ...prevAnswers,
       {
-        question: storedQuestions[currentQuestionIndex].question,
+        question: storedQuestions[currentQuestionIndex],
         answer: currentAnswer.trim(),
       },
     ]);
@@ -61,7 +62,7 @@ const QuestionPage: React.FC = () => {
           answers: [
             ...userAnswers,
             {
-              question: storedQuestions[currentQuestionIndex].question,
+              question: storedQuestions[currentQuestionIndex],
               answer: currentAnswer.trim(),
             },
           ],
@@ -87,7 +88,7 @@ const QuestionPage: React.FC = () => {
         currentQuestionIndex < storedQuestions.length && (
           <div className="w-full max-w-lg sm:max-w-xl bg-white rounded-lg shadow-lg p-6 sm:p-8">
             <p className="text-lg sm:text-xl font-semibold mb-6 text-center">
-              {storedQuestions[currentQuestionIndex].question}
+              {storedQuestions[currentQuestionIndex]}
             </p>
             <input
               type="text"
