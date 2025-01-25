@@ -44,12 +44,11 @@ const LanguagePage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Достаем направление и уровень из состояния
-  const { direction, level }: { direction?: string; level?: string } =
+  const { specialty, level }: { specialty?: string; level?: string } =
     location.state || {};
 
   // Если нет направления или уровня, редиректим на главную страницу
-  if (!direction || !level) {
+  if (!specialty || !level) {
     navigate("/");
     return null;
   }
@@ -57,7 +56,7 @@ const LanguagePage: React.FC = () => {
   // Обработчик выбора языка
   const handleCompleteSelection = (language: string) => {
     const selectionData = {
-      direction,
+      specialty,
       level,
       language,
     };
@@ -66,7 +65,7 @@ const LanguagePage: React.FC = () => {
     localStorage.setItem("interviewPreparation", JSON.stringify(selectionData));
 
     // Переход к следующей странице вопросов
-    navigate("/questions");
+    navigate("/go");
   };
 
   return (
@@ -80,10 +79,10 @@ const LanguagePage: React.FC = () => {
       }}
     >
       <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white bg-clip-text text-transparent mb-10 text-center">
-        Выберите язык для {direction} ({level})
+        Выберите язык для {specialty} ({level})
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 w-full max-w-7xl">
-        {(languages[direction as keyof typeof languages] || []).map(
+        {(languages[specialty as keyof typeof languages] || []).map(
           (language, index) => (
             <div
               key={index}

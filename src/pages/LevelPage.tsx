@@ -4,9 +4,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 const LevelPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { direction } = location.state || {};
+  const { specialty } = location.state || {};
 
-  if (!direction) {
+  if (!specialty) {
     navigate("/");
     return null;
   }
@@ -14,7 +14,7 @@ const LevelPage = () => {
   const levels = ["Junior", "Middle", "Senior"];
 
   const handleSelectLevel = (level: string) => {
-    navigate("/languages", { state: { direction, level } });
+    navigate("/languages", { state: { specialty, level } });
   };
 
   return (
@@ -28,7 +28,7 @@ const LevelPage = () => {
       }}
     >
       <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white bg-clip-text text-transparent mt-[-100px] sm:mt-[-150px] lg:mt-[-200px] mb-10 text-center">
-        Выберите уровень для {direction}
+        Выберите уровень для {specialty}
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 px-4 sm:px-6 lg:px-8 w-full max-w-7xl">
         {levels.map((level, index) => (

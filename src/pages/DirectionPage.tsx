@@ -22,8 +22,8 @@ const DirectionPage = () => {
     },
   ];
 
-  const handleSelectDirection = (direction: string) => {
-    navigate("/level", { state: { direction } });
+  const handleSelectDirection = (specialty: string) => {
+    navigate("/level", { state: { specialty } });
   };
 
   return (

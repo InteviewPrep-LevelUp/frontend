@@ -69,14 +69,7 @@ const MainPage = () => {
       {/* About Section */}
       <section
         id="about"
-        className="flex flex-col items-center py-16 md:py-20 px-4 text-white"
-        style={{
-          backgroundImage: "url('img/bg-2.webp')",
-          backgroundColor: "#000",
-          backgroundSize: "contain",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
+        className="flex flex-col items-center py-16 md:py-20 px-4 text-white bg-custom-blue"
       >
         <h2 className="text-3xl md:text-4xl lg:text-[50px] font-bold mb-12 md:mb-16 text-neon-blue text-center">
           О проекте
