@@ -17,14 +17,14 @@ const RecommendationPage: React.FC = () => {
     const data = JSON.parse(
       localStorage.getItem("interviewPreparation") || "{}"
     );
-    const { direction, level, language } = data;
+    const { specialty, level, language } = data;
 
     setRecommendations({
       strength: "Хорошие знания в основном направлении.",
       weakness: "Не хватает опыта с проектами в реальной жизни.",
       improvement:
         "Попробуйте поработать над практическими проектами и улучшить навыки в " +
-        direction,
+        specialty,
     });
   }, []);
 

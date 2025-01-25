@@ -26,6 +26,7 @@ export const getQuestions = createAsyncThunk(
       );
       navigate("/questions");
       console.log(response.data);
+      localStorage.setItem("questions", JSON.stringify(response.data));
       return response.data;
     } catch (error: any) {
       console.error("Ошибка при отправке данных:", error);
