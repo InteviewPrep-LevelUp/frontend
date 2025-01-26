@@ -7,9 +7,8 @@ import Loader from "../components/Loader";
 const GoPage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [loading, setLoading] = useState(false); // Loading state
+  const [loading, setLoading] = useState(false);
 
-  // Функция для отправки данных на сервер
   const handleNavigate = async () => {
     const preparationData = localStorage.getItem("interviewPreparation");
 
@@ -17,12 +16,12 @@ const GoPage = () => {
       const { specialty, level, language } = JSON.parse(preparationData);
 
       try {
-        setLoading(true); // Set loading to true when the action starts
+        setLoading(true);
         await dispatch(getQuestions({ specialty, level, language, navigate }));
-        setLoading(false); // Set loading to false when the action is complete
+        setLoading(false);
       } catch (error) {
         console.error("Ошибка при отправке данных:", error);
-        setLoading(false); // Ensure loading is stopped if there is an error
+        setLoading(false); 
       }
     }
   };
@@ -51,7 +50,7 @@ const GoPage = () => {
         <button
           className="cursor-pointer mt-6 sm:mt-8 px-6 py-3 md:py-5 rounded-lg bg-white text-custom-blue font-bold text-sm sm:text-base tracking-wide transition-all transform hover:scale-105 hover:shadow-lg hover:opacity-90"
           onClick={handleNavigate}
-          disabled={loading} // Disable button while loading
+          disabled={loading}
         >
           Перейти к заданиям 👉
         </button>

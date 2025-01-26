@@ -6,13 +6,18 @@ type Answer = {
   answer: string;
 };
 
+type AnswersData = {
+  answers: Answer[];
+};
+
 const QuestionPage: React.FC = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
-  const [userAnswers, setUserAnswers] = useState<Answer[]>([]);
+  const [userAnswers, setUserAnswers] = useState<Answer[]>([]); // Массив для хранения объектов с вопросом и ответом
   const [currentAnswer, setCurrentAnswer] = useState<string>("");
-  const [storedQuestions, setStoredQuestions] = useState<string[]>([]); // Изменено на массив строк
+  const [storedQuestions, setStoredQuestions] = useState<string[]>([]); // Массив строк для вопросов
   const navigate = useNavigate();
 
+  // Загружаем вопросы из localStorage
   useEffect(() => {
     const storedData = localStorage.getItem("questions");
     if (storedData) {
@@ -29,22 +34,12 @@ const QuestionPage: React.FC = () => {
     }
   }, []);
 
-  // Если данные еще не загружены, показываем сообщение
-  if (storedQuestions.length === 0) {
-    return (
-      <div className="min-h-screen bg-custom-blue flex flex-col items-center justify-center p-10">
-        <p className="text-white">Загружаются вопросы...</p>
-      </div>
-    );
-  }
-
   const handleAnswerSubmit = () => {
     if (currentAnswer.trim() === "") {
       alert("Пожалуйста, напишите ответ!");
       return;
     }
 
-    // Добавляем ответ в список
     setUserAnswers((prevAnswers) => [
       ...prevAnswers,
       {
@@ -55,18 +50,25 @@ const QuestionPage: React.FC = () => {
     setCurrentAnswer(""); // Очищаем поле ввода
 
     if (currentQuestionIndex < storedQuestions.length - 1) {
+      // Если не последний вопрос, переходим к следующему
       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
     } else {
+      // Когда вопросы закончены, формируем объект с ключом "answers" и передаем его на страницу "/check"
+      const formattedAnswers: AnswersData = {
+        answers: [
+          ...userAnswers,
+          {
+            question: storedQuestions[currentQuestionIndex],
+            answer: currentAnswer.trim(),
+          },
+        ],
+      };
+
+      // Выводим объект в консоль в нужном формате
+      console.log(formattedAnswers);
+
       navigate("/check", {
-        state: {
-          answers: [
-            ...userAnswers,
-            {
-              question: storedQuestions[currentQuestionIndex],
-              answer: currentAnswer.trim(),
-            },
-          ],
-        },
+        state: formattedAnswers,
       });
     }
   };

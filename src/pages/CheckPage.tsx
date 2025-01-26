@@ -23,7 +23,7 @@ const CheckPage: React.FC = () => {
         Разбор ответов
       </h1>
       <div className="flex flex-col gap-6 w-full max-w-7xl">
-        {questions.map((question: any, index: number) => {
+        {/* {questions.map((question: any, index: number) => {
           const isCorrect = userAnswers[index] === question.correctAnswer;
           return (
             <div
@@ -51,7 +51,7 @@ const CheckPage: React.FC = () => {
               )}
             </div>
           );
-        })}
+        })} */}
       </div>
       <button
         onClick={() => navigate("/recommendations")}
