@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../store/store";
+import { submitAnswers } from "../store/actions/feedback.action";
+import Loader from "../components/Loader";
 
 type Answer = {
   question: string;
@@ -15,9 +18,10 @@ const QuestionPage: React.FC = () => {
   const [userAnswers, setUserAnswers] = useState<Answer[]>([]); // Массив для хранения объектов с вопросом и ответом
   const [currentAnswer, setCurrentAnswer] = useState<string>("");
   const [storedQuestions, setStoredQuestions] = useState<string[]>([]); // Массив строк для вопросов
+  const [loading, setLoading] = useState<boolean>(false); // Состояние для загрузки
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
-  // Загружаем вопросы из localStorage
   useEffect(() => {
     const storedData = localStorage.getItem("questions");
     if (storedData) {
@@ -47,13 +51,11 @@ const QuestionPage: React.FC = () => {
         answer: currentAnswer.trim(),
       },
     ]);
-    setCurrentAnswer(""); // Очищаем поле ввода
+    setCurrentAnswer("");
 
     if (currentQuestionIndex < storedQuestions.length - 1) {
-      // Если не последний вопрос, переходим к следующему
       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
     } else {
-      // Когда вопросы закончены, формируем объект с ключом "answers" и передаем его на страницу "/check"
       const formattedAnswers: AnswersData = {
         answers: [
           ...userAnswers,
@@ -64,12 +66,13 @@ const QuestionPage: React.FC = () => {
         ],
       };
 
-      // Выводим объект в консоль в нужном формате
-      console.log(formattedAnswers);
-
-      navigate("/check", {
-        state: formattedAnswers,
-      });
+      setLoading(true); // Включаем состояние загрузки перед отправкой данных
+      dispatch(submitAnswers({ answers: formattedAnswers, navigate })).finally(
+        () => {
+          setLoading(false); // Отключаем состояние загрузки после выполнения запроса
+          navigate("/check"); // Перенаправляем на страницу с рекомендациями
+        }
+      );
     }
   };
 
@@ -103,7 +106,9 @@ const QuestionPage: React.FC = () => {
               onClick={handleAnswerSubmit}
               className="w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white py-3 px-6 rounded-lg shadow-lg hover:opacity-90 transition-opacity"
             >
-              {currentQuestionIndex < storedQuestions.length - 1
+              {loading
+                ? (<section className="absolute top-0 right-0 left-0"><Loader /></section>)
+                : currentQuestionIndex < storedQuestions.length - 1
                 ? "Следующий вопрос"
                 : "Завершить"}
             </button>

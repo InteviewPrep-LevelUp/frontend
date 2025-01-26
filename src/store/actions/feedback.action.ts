@@ -7,12 +7,18 @@ type Answer = {
 
 type AnswersData = {
   answers: Answer[];
-  navigate: (path: string) => void;
 };
 
+// Обновляем экшн
 export const submitAnswers = createAsyncThunk(
   "answers/submit",
-  async ({ answers, navigate }: AnswersData, { rejectWithValue }) => {
+  async ({
+    answers,
+    navigate,
+  }: {
+    answers: AnswersData;
+    navigate: (path: string) => void;
+  }) => {
     try {
       const response = await fetch(
         "https://ai-interview-assistant-backend-production.up.railway.app/feedback",
@@ -26,13 +32,28 @@ export const submitAnswers = createAsyncThunk(
       );
 
       const data = await response.json();
-      localStorage.setItem("feedback", JSON.stringify(data));
       console.log(data);
-      navigate("/recommendations");
+
+      if (data.feedback) {
+        localStorage.setItem(
+          "strength",
+          JSON.stringify(data.feedback.strength)
+        );
+        localStorage.setItem(
+          "areas_for_improvement",
+          JSON.stringify(data.feedback.areas_for_improvement)
+        );
+        localStorage.setItem(
+          "incorrect_answers",
+          JSON.stringify(data.feedback.incorrect_answers)
+        );
+      }
+
+      navigate("/check");
       return data;
     } catch (error: any) {
       console.error(error);
-      return rejectWithValue(error.message);
+      throw new Error("Ошибка при отправке данных");
     }
   }
 );
