@@ -54,7 +54,16 @@ const RecommendationPage: React.FC = () => {
           </button>
 
           <button
-            onClick={() => navigate("/")}
+            onClick={() => {
+              // Очищаем нужные ключи в localStorage
+              localStorage.removeItem("questions");
+              localStorage.removeItem("interviewPreparation");
+              localStorage.removeItem("incorrect_answers");
+              localStorage.removeItem("areas_for_improvement");
+
+              // Переходим на главную страницу
+              navigate("/");
+            }}
             className="w-full sm:w-1/2 bg-gradient-to-r bg-blue-500 text-white font-bold py-3 px-6 rounded-full shadow-md transition-all hover:opacity-90"
           >
             На главную

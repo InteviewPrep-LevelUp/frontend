@@ -8,6 +8,7 @@ import LanguagePage from "../pages/LanguagePage";
 import QuestionPage from "../pages/QuestionPage";
 import RecommendationPage from "../pages/RecommendationPage";
 import GoPage from "../pages/GoPage";
+import ErrorPage from "../pages/ErrorPage";
 
 const MainRoutes = () => {
   return (
@@ -20,6 +21,7 @@ const MainRoutes = () => {
       <Route path="/check" element={<CheckPage />} />
       <Route path="/recommendations" element={<RecommendationPage />} />
       <Route path="/go" element={<GoPage />} />
+      <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
 };
