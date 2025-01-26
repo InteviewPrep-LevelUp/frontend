@@ -36,9 +36,6 @@ const RecommendationPage: React.FC = () => {
       </h1>
       <div className="w-full max-w-2xl sm:max-w-3xl bg-white rounded-lg shadow-xl p-6 sm:p-8 md:p-10">
         <div className="mb-6 sm:mb-8 md:mb-20">
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold bg-gradient-to-r text-[#0099ff] bg-clip-text text-transparent mb-5">
-            Рекомендации по улучшению:
-          </h2>
           {recommendations.improvement &&
             recommendations.improvement.length > 0 && (
               <ul className="text-gray-700 text-sm sm:text-base md:text-lg">
