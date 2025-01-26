@@ -45,12 +45,19 @@ const RecommendationPage: React.FC = () => {
               </ul>
             )}
         </div>
-        <div className="mt-6 sm:mt-8 md:mt-10">
+        <div className="mt-6 sm:mt-8 md:mt-10 flex flex-col sm:flex-row sm:space-x-4 gap-4">
           <button
             onClick={() => navigate("/questions")}
-            className="w-full sm:w-3/4 md:w-1/2 bg-gradient-to-r text-gradient text-white font-bold py-3 px-6 rounded-full shadow-md transition-all hover:opacity-90"
+            className="w-full sm:w-1/2 bg-gradient-to-r text-gradient text-white font-bold py-3 px-6 rounded-full shadow-md transition-all hover:opacity-90"
           >
             Повторить тест
+          </button>
+
+          <button
+            onClick={() => navigate("/")}
+            className="w-full sm:w-1/2 bg-gradient-to-r bg-blue-500 text-white font-bold py-3 px-6 rounded-full shadow-md transition-all hover:opacity-90"
+          >
+            На главную
           </button>
         </div>
       </div>
