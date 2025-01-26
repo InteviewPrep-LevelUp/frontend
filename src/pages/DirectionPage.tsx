@@ -16,10 +16,6 @@ const DirectionPage = () => {
       description: "Создавай приложения для IOS и Android",
     },
     { name: "DevOps", description: "Автоматизируй процессы разработки" },
-    {
-      name: "Полное интервью",
-      description: "Пройдите полное интервью и выявите все свои слабые стороны",
-    },
   ];
 
   const handleSelectDirection = (specialty: string) => {

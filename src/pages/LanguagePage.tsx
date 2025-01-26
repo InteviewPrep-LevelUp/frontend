@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 const languages = {
   Backend: ["Python", "C++", "Java", "C#", "Go", "PHP"],
   Frontend: [
-    "HTML5/CSS3",
     "JavaScript",
     "TypeScript",
     "React",
