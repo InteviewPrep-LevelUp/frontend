@@ -24,10 +24,10 @@ const ErrorPage = () => {
       <div
         className="bg-white rounded-lg shadow-md p-8 flex flex-col items-center justify-center"
         style={{
-          maxWidth: "600px", // Увеличена ширина
-          minWidth: "350px", // Минимальная ширина
-          width: "100%", // Адаптивная ширина
-          height: "auto", // Высота теперь зависит от контента
+          maxWidth: "600px", 
+          minWidth: "350px",
+          width: "100%", 
+          height: "auto", 
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",

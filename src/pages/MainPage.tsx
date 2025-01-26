@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const MainPage = () => {
@@ -11,9 +11,26 @@ const MainPage = () => {
     }
   };
 
+  useEffect(() => {
+    const clearLocalStorage = () => {
+      localStorage.removeItem("interviewPreparation");
+      localStorage.removeItem("questions");
+      localStorage.removeItem("areas_for_improvement");
+      localStorage.removeItem("incorrect_answers");
+    };
+
+    window.addEventListener("beforeunload", clearLocalStorage);
+    window.addEventListener("popstate", clearLocalStorage);
+    clearLocalStorage();
+
+    return () => {
+      window.removeEventListener("beforeunload", clearLocalStorage);
+      window.removeEventListener("popstate", clearLocalStorage);
+    };
+  }, []);
+
   return (
     <div className="bg-custom-blue flex flex-col">
-      {/* Header */}
       <header className="flex flex-wrap justify-between items-center max-w-7xl w-full mx-auto py-4 px-6 md:px-10 text-white">
         <div className="flex items-center gap-6 md:gap-10">
           <img src="img/logo.png" className="h-12 md:h-16" alt="Logo" />
@@ -40,7 +57,6 @@ const MainPage = () => {
         </div>
       </header>
 
-      {/* Main Section */}
       <section
         id="main"
         className="flex flex-col text-white items-center pt-16 md:pt-24 h-[90vh] p-10"
@@ -66,7 +82,6 @@ const MainPage = () => {
         </button>
       </section>
 
-      {/* About Section */}
       <section
         id="about"
         className="flex flex-col items-center py-16 md:py-20 px-4 text-white bg-custom-blue"
@@ -76,7 +91,6 @@ const MainPage = () => {
         </h2>
 
         <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16 justify-center">
-          {/* Image Section */}
           <div className="relative group w-full max-w-[90%] md:max-w-lg">
             <img
               src="img/about.avif"
@@ -86,7 +100,6 @@ const MainPage = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-custom-blue opacity-0 group-hover:opacity-40 rounded-lg transition-opacity"></div>
           </div>
 
-          {/* Text Section */}
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
             <p className="max-w-full lg:max-w-md leading-6 md:leading-7 text-sm md:text-base mb-8">
               Этот проект создан для подготовки к техническим собеседованиям с

@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 const CheckPage: React.FC = () => {
   const navigate = useNavigate();
-
-  // Получаем данные из localStorage
   const incorrectAnswers = JSON.parse(
     localStorage.getItem("incorrect_answers") || "[]"
   ).filter(
@@ -27,7 +25,6 @@ const CheckPage: React.FC = () => {
       </h1>
 
       <div className="flex flex-col gap-6 w-full max-w-7xl">
-        {/* Если есть неправильные ответы */}
         {incorrectAnswers.length > 0 ? (
           <div className="bg-white rounded-lg shadow-lg p-6 sm:p-8 hover:shadow-xl transform hover:scale-[1.02] transition-all">
             <h2 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent mb-4">

@@ -46,10 +46,10 @@ const DirectionPage = () => {
             onClick={() => handleSelectDirection(direction.name)}
             className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transform hover:scale-105 transition-all cursor-pointer"
             style={{
-              maxWidth: "300px", // Максимальная ширина
-              minWidth: "250px", // Минимальная ширина
-              width: "100%", // Адаптивная ширина
-              height: "180px", // Фиксированная высота
+              maxWidth: "300px",
+              minWidth: "250px",
+              width: "100%", 
+              height: "180px",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",

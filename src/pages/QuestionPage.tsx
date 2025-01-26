@@ -15,10 +15,10 @@ type AnswersData = {
 
 const QuestionPage: React.FC = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
-  const [userAnswers, setUserAnswers] = useState<Answer[]>([]); // Массив для хранения объектов с вопросом и ответом
+  const [userAnswers, setUserAnswers] = useState<Answer[]>([]); 
   const [currentAnswer, setCurrentAnswer] = useState<string>("");
-  const [storedQuestions, setStoredQuestions] = useState<string[]>([]); // Массив строк для вопросов
-  const [loading, setLoading] = useState<boolean>(false); // Состояние для загрузки
+  const [storedQuestions, setStoredQuestions] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -28,7 +28,7 @@ const QuestionPage: React.FC = () => {
       try {
         const parsedData = JSON.parse(storedData);
         if (Array.isArray(parsedData.questions)) {
-          setStoredQuestions(parsedData.questions); // Сохраняем вопросы
+          setStoredQuestions(parsedData.questions); 
         } else {
           console.error("Невалидный формат данных в localStorage");
         }
@@ -66,11 +66,12 @@ const QuestionPage: React.FC = () => {
         ],
       };
 
-      setLoading(true); // Включаем состояние загрузки перед отправкой данных
+      setLoading(true);
       dispatch(submitAnswers({ answers: formattedAnswers, navigate })).finally(
         () => {
-          setLoading(false); // Отключаем состояние загрузки после выполнения запроса
-          navigate("/check"); // Перенаправляем на страницу с рекомендациями
+          setLoading(false);
+          localStorage.removeItem("strength")
+          navigate("/check");
         }
       );
     }

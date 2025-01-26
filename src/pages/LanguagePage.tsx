@@ -1,7 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-// Словарь языков для разных направлений
 const languages = {
   Backend: ["Python", "C++", "Java", "C#", "Go", "PHP"],
   Frontend: [
@@ -47,13 +46,11 @@ const LanguagePage: React.FC = () => {
   const { specialty, level }: { specialty?: string; level?: string } =
     location.state || {};
 
-  // Если нет направления или уровня, редиректим на главную страницу
   if (!specialty || !level) {
     navigate("/");
     return null;
   }
 
-  // Обработчик выбора языка
   const handleCompleteSelection = (language: string) => {
     const selectionData = {
       specialty,
@@ -61,10 +58,7 @@ const LanguagePage: React.FC = () => {
       language,
     };
 
-    // Сохраняем данные в localStorage
     localStorage.setItem("interviewPreparation", JSON.stringify(selectionData));
-
-    // Переход к следующей странице вопросов
     navigate("/go");
   };
 
