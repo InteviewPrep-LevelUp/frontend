@@ -9,7 +9,6 @@ type AnswersData = {
   answers: Answer[];
 };
 
-// Обновляем экшн
 export const submitAnswers = createAsyncThunk(
   "answers/submit",
   async ({

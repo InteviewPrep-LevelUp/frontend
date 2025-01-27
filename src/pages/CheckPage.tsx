@@ -46,14 +46,12 @@ const CheckPage: React.FC = () => {
             </ul>
           </div>
         ) : (
-          // Если неправильных ответов нет
           <p className="text-sm sm:text-base text-gray-800">
             Нет неправильных ответов.
           </p>
         )}
       </div>
 
-      {/* Кнопка перехода на страницу рекомендаций */}
       <button
         onClick={() => navigate("/recommendations")}
         className="mt-12 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm sm:text-lg font-semibold rounded-lg shadow-md hover:opacity-90 transition-opacity mb-10"

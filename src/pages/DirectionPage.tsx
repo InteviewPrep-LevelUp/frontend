@@ -15,11 +15,37 @@ const DirectionPage = () => {
       name: "Mobile Development",
       description: "Создавай приложения для IOS и Android",
     },
+    {
+      name: "Game Development",
+      description: "Создавай игры легко и просто",
+    },
     { name: "DevOps", description: "Автоматизируй процессы разработки" },
+    {
+      name: "Полное интервью 🔒",
+      description: "Пройди полное интервью и узнай все свои слабые стороны",
+      isPremium: true, // добавляем ключ для премиум направления
+    },
+    {
+      name: "Soft skills 🔒",
+      description: "Насколько у вас хорошие софты?",
+      isPremium: true,
+    },
+    {
+      name: "Голос 🔒",
+      description: "Узнай, насколько уверенно ты говоришь",
+      isPremium: true,
+    },
   ];
 
-  const handleSelectDirection = (specialty: string) => {
-    navigate("/level", { state: { specialty } });
+  const handleSelectDirection = (
+    specialty: string,
+    isPremium: boolean = false
+  ) => {
+    if (isPremium) {
+      navigate("/premium");
+    } else {
+      navigate("/level", { state: { specialty } });
+    }
   };
 
   return (
@@ -39,12 +65,17 @@ const DirectionPage = () => {
         {directions.map((direction, index) => (
           <div
             key={index}
-            onClick={() => handleSelectDirection(direction.name)}
+            onClick={() =>
+              handleSelectDirection(
+                direction.name,
+                direction.isPremium || false
+              )
+            }
             className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transform hover:scale-105 transition-all cursor-pointer"
             style={{
               maxWidth: "300px",
               minWidth: "250px",
-              width: "100%", 
+              width: "100%",
               height: "180px",
               display: "flex",
               flexDirection: "column",

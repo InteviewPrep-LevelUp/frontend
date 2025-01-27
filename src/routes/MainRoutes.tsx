@@ -9,6 +9,7 @@ import QuestionPage from "../pages/QuestionPage";
 import RecommendationPage from "../pages/RecommendationPage";
 import GoPage from "../pages/GoPage";
 import ErrorPage from "../pages/ErrorPage";
+import PremiumPage from "../pages/PremiumPage";
 
 const MainRoutes = () => {
   return (
@@ -21,6 +22,7 @@ const MainRoutes = () => {
       <Route path="/check" element={<CheckPage />} />
       <Route path="/recommendations" element={<RecommendationPage />} />
       <Route path="/go" element={<GoPage />} />
+      <Route path="/premium" element={<PremiumPage />} />
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
